@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/coderk987/Expense-Splitter/issues"
   },
-  "homepage": "https://github.com/coderk987/Expense-Splitter#readme"
+  "homepage": "https://github.com/coderk987/Expense-Splitter#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
 }
