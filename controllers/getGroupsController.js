@@ -1,5 +1,4 @@
-const USERID = 1;
-const data = require("../data/test.js");
+import { groups } from "../data/mongo.js";
 
 function getGroups(req, res){
     const response = [];
@@ -9,4 +8,4 @@ function getGroups(req, res){
     return res.json(response);
 }
 
-module.exports = getGroups;
+export default getGroups;

@@ -1,5 +1,4 @@
 const USERID = 1;
-const data = require("../data/test.js");
 
 function getMembers(req, res){
     const GROUPID = req.params.id;
@@ -15,4 +14,4 @@ function getMembers(req, res){
     res.json(response);
 }
 
-module.exports = getMembers;
+export default getMembers;
