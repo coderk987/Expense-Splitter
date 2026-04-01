@@ -5,6 +5,10 @@ import getGroups from "../controllers/getGroupsController.js";
 import getPayments from "../controllers/getPaymentsController.js";
 import getMembers from "../controllers/getMembersController.js";
 
+import authMiddleware from "../middleware/authMiddleware.js";
+
+router.use(authMiddleware);
+
 //Get Groups in which User is a Member.
 router.get("/", getGroups);
 //Get Payments of Groups in which User is a participant.

@@ -1,17 +1,11 @@
-const USERID = 1;
+import { groups } from "../data/mongo.js";
 
-function getMembers(req, res){
-    const GROUPID = req.params.id;
+async function getMembers(req, res){
+    const groupId = req.params.id;
+    const membersId = await groups.findOne({_id: groupId}).members;
+    const groupMembers = await groups.find({_id: {$in: membersId}}, { password: 0 }).toArray();
 
-    let response=[];
-    data.groups.find((group)=>{
-        if(group.id==GROUPID){
-            response = group.members;
-            return true;
-        }
-    })
-
-    res.json(response);
+    return res.json(groupMembers);
 }
 
 export default getMembers;
