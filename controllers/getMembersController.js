@@ -1,9 +1,12 @@
-import { groups } from "../data/mongo.js";
+import { groups, users } from "../data/mongo.js";
+import { ObjectId } from "mongodb";
 
 async function getMembers(req, res){
     const groupId = req.params.id;
-    const membersId = await groups.findOne({_id: groupId}).members;
-    const groupMembers = await groups.find({_id: {$in: membersId}}, { password: 0 }).toArray();
+    const groupData = await groups.findOne({_id: new ObjectId(groupId)});
+    console.log(groupData);
+    const membersId = groupData.members;
+    const groupMembers = await users.find({_id: {$in: membersId}}, { password: 0 }).toArray();
 
     return res.json(groupMembers);
 }

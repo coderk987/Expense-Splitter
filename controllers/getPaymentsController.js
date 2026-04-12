@@ -1,16 +1,21 @@
-const USERID = 2;
-import {users} from "../data/mongo.js";
+import {payments} from "../data/mongo.js";
 
-function getPayments(req, res){
-    /*const GROUPID = req.params.id;
-    const response = [];
-    data.payments.forEach((pay)=>{
-        if(GROUPID==pay.groupId && pay.participants.includes(USERID)) response.push(pay);
-    })*/
-    console.log(users);
-    //return res.json(response);
+async function getPayments(req, res){
+    const groupId = req.params.id;
+    const userId = req.user._id;
+
+    try{
+        const userPayments = await payments.find({
+            $or: [
+                {creator: userId},
+                {participants: userId},
+            ],
+            group: groupId
+        })
+        res.status(200).json(userPayments);
+    }catch(err){
+        res.status(100);
+    }
 }
-
-//getPayments();
 
 export default getPayments;
